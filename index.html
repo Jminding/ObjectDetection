@@ -19,10 +19,7 @@
   <img id="imgshow" style="display: none;"/>
   <canvas id="canvas" width="0" height="0"></canvas>
 
-  <!-- Place your code in the script tag below. You can also use an external .js file -->
   <script>
-    // Notice there is no 'import' statement. 'cocoSsd' and 'tf' is
-    // available on the index-page because of the script tag above.
     const file = document.getElementById('img');
     file.onchange = async () => {
       var image = document.getElementById('imgshow');
@@ -30,11 +27,6 @@
       image.style = "display: block;";
       alert("Please wait a few moments while the image is being processed.");
       const img = document.getElementById('imgshow');
-      // Load the model.
-      // cocoSsd.load().then(model => {
-      //   // detect objects in the image.
-      //   const result = await model.detect(image);
-      // });
       const model = await cocoSsd.load();
       const result = await model.detect(image);
       console.log(result);
@@ -52,6 +44,7 @@
         context.fillStyle = 'green';
         context.stroke();
         context.fillText(result[i].score.toFixed(4) * 100 + '% certainty - ' + result[i].class, result[i].bbox[0], result[i].bbox[1] > 10 ? result[i].bbox[1] - 5 : 10);
+        console.log("Process finished!");
       }
     };
   </script>
