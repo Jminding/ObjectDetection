@@ -1,2 +1,2 @@
 # ObjectDetection
-Object Detection using Tensorflow.js Coco-ssd
+Object Detection AI using Tensorflow.js Coco-ssd
