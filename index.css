@@ -1,18 +1,51 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: black;
+    color: #fff;
+}
+
+body {
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: aqua;
+}
+
+
 video {
     display: block;
+    width: 50%;
+    height: auto;
+    margin: 0 auto;
+    background-color: #000;
+    border: 1px solid #000;
+    box-shadow: 0 0 5px #000;
+    cursor: pointer;
+
 }
   
 section {
     opacity: 1;
     transition: opacity 500ms ease-in-out;
+
 }
 
 .removed {
     display: none;
+
 }
 
 .invisible {
     opacity: 0.2;
+
 }
 
 .camView {
@@ -21,11 +54,17 @@ section {
     width: calc(100% - 20px);
     margin: 10px;
     cursor: pointer;
+    overflow: hidden;
+    border: 1px solid #fff;
+    box-shadow: 0 0 5px #fff;
+    background-color: #000;
+    transition: all 500ms ease-in-out;
+    
 }
 
 .camView p {
     position: absolute;
-    padding: 5px;
+    padding: 50px;
     background-color: rgba(255, 111, 0, 0.85);
     color: #FFF;
     border: 1px dashed rgba(255, 255, 255, 0.7);
@@ -39,3 +78,23 @@ section {
     z-index: 1;
     position: absolute;
 }
+
+.highlighter:hover {
+    background: rgba(0, 255, 0, 0.5);
+}
+
+.highlighter:active {
+    background: rgba(0, 255, 0, 0.75);
+}   
+
+.main-header {
+    background-color: #070606;
+    color: #fff;
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
