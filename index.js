@@ -90,6 +90,7 @@ function predictWebcam() {
             'top: ' + predictions[n].bbox[1] + 'px;' + 
             'width: ' + (predictions[n].bbox[2] - 10) + 'px;';
 
+
         const highlighter = document.createElement('div');
         highlighter.setAttribute('class', 'highlighter');
         highlighter.style = 'left: ' + predictions[n].bbox[0] + 'px; top: '
@@ -134,3 +135,40 @@ fileSelector.onchange = async () => {
         console.log("Process finished!");
     }
 };
+
+function changeImage() {
+    var image = document.getElementById('imgshow');
+    image.src = URL.createObjectURL(event.target.files[0]);
+    image.style = "display: block;";
+    const img = document.getElementById('imgshow');
+    const model = cocoSsd.load();
+    model.then(function(loadedModel) {
+        console.log("Model loaded!");
+        model = loadedModel;
+        bruh.innerHTML = "Model loaded!";
+        bruh.classList.add('removed');
+        fileSelector.disabled = false;
+        enableWebcamButton.disabled = false;
+    });
+    model.then(function(loadedModel) {
+        loadedModel.detect(img).then(function(result) {
+            console.log(result);
+            const c = document.getElementById('canvas');
+            c.width = img.width;
+            c.height = img.height;
+            const context = c.getContext('2d');
+            context.drawImage(img, 0, 0);
+            context.font = '10 px Arial';
+            for (let i = 0; i < result.length; i++) {
+                context.beginPath();
+                context.rect(...result[i].bbox);
+                context.linewidth = 5;
+                context.strokeStyle = 'green';
+                context.fillStyle = 'green';
+                context.stroke();
+                context.fillText(result[i].score.toFixed(4) * 100 + '% certainty - ' + result[i].class, result[i].bbox[0], result[i].bbox[1] > 10 ? result[i].bbox[1] - 5 : 10);
+                console.log("Process finished!");
+            }
+        });
+    });
+}
